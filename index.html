@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rudraksh Dhasmana | Portfolio</title>
+<meta name="description" content="Rudraksh Dhasmana, BCA student at Christ University who builds and ships software. Live projects: CareerPrepAI (AI interview coach) and LexiGuard AI (legal document red-flag checker).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0A1A; --ink:#ECEEF8; --muted:#9AA0BF; --line:rgba(255,255,255,.09);
+  --glass:rgba(255,255,255,.045); --violet:#8B5CF6; --cyan:#22D3EE; --pink:#F472B6; --green:#4ADE80;
+  --grad:linear-gradient(100deg,#A78BFA 0%,#22D3EE 50%,#F472B6 100%);
+  --display:"Sora",system-ui,sans-serif; --body:"Inter",system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:6rem}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.05rem;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.1;letter-spacing:-.02em}
+p{margin:0 0 1rem}ul{margin:0;padding:0;list-style:none}a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:clamp(1.25rem,5vw,2.5rem)}
+.grad-text{background:var(--grad);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:200% center}}
+
+/* Background: aurora + grid */
+.bg{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;animation:float 22s ease-in-out infinite}
+.b1{width:520px;height:520px;background:#6D28D9;top:-140px;left:-120px}
+.b2{width:460px;height:460px;background:#0891B2;top:30%;right:-160px;animation-delay:-7s}
+.b3{width:420px;height:420px;background:#BE185D;bottom:-160px;left:30%;animation-delay:-14s;opacity:.35}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(60px,40px) scale(1.1)}66%{transform:translate(-40px,60px) scale(.95)}}
+.gridbg{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse at 50% 0%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 0%,#000 30%,transparent 75%);opacity:.5}
+.cursor{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:-1;left:0;top:0;
+  background:radial-gradient(circle,rgba(139,92,246,.16),transparent 65%);transform:translate(-50%,-50%);transition:opacity .3s;opacity:0}
+
+/* Nav */
+.nav{position:fixed;top:1rem;left:50%;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:.25rem;
+  padding:.4rem;border-radius:999px;background:rgba(15,15,35,.6);border:1px solid var(--line);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.nav a{padding:.45rem 1rem;border-radius:999px;font-size:.92rem;font-weight:500;color:var(--muted);transition:color .2s,background .2s}
+.nav a:hover{color:var(--ink);background:rgba(255,255,255,.06)}
+.nav .logo{font-family:var(--display);font-weight:800;color:var(--ink);padding-inline:.9rem}
+.nav .cta{background:var(--ink);color:#0A0A1A}
+.nav .cta:hover{background:#fff;color:#0A0A1A}
+@media(max-width:760px){.nav .hide-sm{display:none}}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.85rem 1.4rem;border-radius:14px;font-weight:600;font-size:.98rem;cursor:pointer;border:0;font-family:inherit;transition:transform .2s,box-shadow .2s,background .2s}
+.btn svg{width:18px;height:18px}
+.btn-primary{background:var(--grad);background-size:150% auto;color:#0A0A1A;box-shadow:0 10px 40px -10px rgba(139,92,246,.7)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 50px -10px rgba(34,211,238,.7)}
+.btn-ghost{background:var(--glass);color:var(--ink);border:1px solid var(--line);backdrop-filter:blur(10px)}
+.btn-ghost:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.25)}
+.actions{display:flex;flex-wrap:wrap;gap:.8rem}
+
+/* Glass card */
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:22px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+
+/* Hero */
+.hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:8rem 0 4rem}
+.badge{display:inline-flex;align-items:center;gap:.6rem;padding:.45rem 1rem;border-radius:999px;font-size:.9rem;font-weight:500;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.25);color:#BBF7D0;margin-bottom:2rem}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(74,222,128,.6);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.hero h1{font-size:clamp(2.8rem,8vw,6rem);font-weight:800;letter-spacing:-.045em;line-height:1}
+.hero h1 .hi{display:block;font-size:.45em;font-weight:600;color:var(--muted);letter-spacing:-.02em;margin-bottom:.6rem}
+.roles{font-family:var(--display);font-size:clamp(1.3rem,3vw,2rem);font-weight:600;margin:1.5rem 0 1.25rem;min-height:1.4em}
+.roles .typed{color:var(--cyan)}
+.caret{display:inline-block;width:3px;height:1em;background:var(--cyan);vertical-align:-.12em;margin-left:3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero .lede{color:var(--muted);max-width:40rem;margin:0 auto 2.25rem;font-size:1.12rem}
+.hero .actions{justify-content:center}
+.socials{display:flex;justify-content:center;gap:.75rem;margin-top:2rem}
+.socials a{width:46px;height:46px;display:grid;place-items:center;border-radius:14px;background:var(--glass);border:1px solid var(--line);transition:transform .2s,border-color .2s}
+.socials a:hover{transform:translateY(-3px);border-color:var(--cyan)}
+.socials svg{width:20px;height:20px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:46rem;margin:3.5rem auto 0}
+.stat{padding:1.25rem 1rem}
+.stat b{display:block;font-family:var(--display);font-size:clamp(1.8rem,4vw,2.4rem);font-weight:800}
+.stat span{color:var(--muted);font-size:.92rem}
+@media(max-width:560px){.stats{grid-template-columns:1fr}}
+
+/* Marquee */
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding:1.4rem 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.track{display:flex;gap:3rem;width:max-content;animation:scroll 35s linear infinite}
+.track span{font-family:var(--display);font-weight:600;font-size:1.15rem;color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:3rem}
+.track span::after{content:"✦";color:var(--violet);font-size:.8rem}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* Sections */
+section.sec{padding:clamp(5rem,10vw,8rem) 0}
+.sec-title{text-align:center;margin-bottom:clamp(3rem,6vw,4.5rem)}
+.kicker{display:inline-block;font-size:.9rem;font-weight:600;color:var(--cyan);padding:.35rem .9rem;border-radius:999px;background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.2);margin-bottom:1rem}
+.sec-title h2{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800}
+.sec-title p{color:var(--muted);max-width:36rem;margin:1rem auto 0}
+
+/* About */
+.about{display:grid;grid-template-columns:1.4fr 1fr;gap:1.5rem;align-items:start}
+@media(max-width:860px){.about{grid-template-columns:1fr}}
+.about-text{padding:clamp(1.75rem,4vw,2.5rem)}
+.about-text p{color:#C9CDE2;font-size:1.08rem;line-height:1.8}
+.about-text p:last-child{margin-bottom:0}
+.about-text strong{color:var(--ink);font-weight:600}
+.facts{padding:1.75rem}
+.facts h3{font-size:1.1rem;margin-bottom:1.1rem}
+.fact{display:flex;gap:.9rem;align-items:flex-start;padding:.85rem 0;border-top:1px solid var(--line)}
+.fact:first-of-type{border-top:0;padding-top:0}
+.fact .fi{flex:none;width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(139,92,246,.25),rgba(34,211,238,.2));border:1px solid var(--line)}
+.fact .fi svg{width:18px;height:18px;color:#E0E7FF}
+.fact b{display:block;font-weight:600;font-size:.98rem}
+.fact span{color:var(--muted);font-size:.92rem}
+
+/* Projects */
+.project{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.project+.project{margin-top:clamp(5rem,10vw,8rem)}
+.project.flip .media{order:2}
+@media(max-width:900px){.project{grid-template-columns:1fr}.project.flip .media{order:0}}
+.media{position:relative}
+.media::before{content:"";position:absolute;inset:8% 6%;background:var(--glowc,var(--violet));filter:blur(70px);opacity:.45;z-index:-1;border-radius:40px}
+.browser{display:block;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:#11112A;box-shadow:0 40px 80px -30px rgba(0,0,0,.8);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.media:hover .browser{transform:translateY(-6px) rotate(-.4deg)}
+.bar{display:flex;align-items:center;gap:.45rem;padding:.7rem .9rem;background:#16163A;border-bottom:1px solid rgba(255,255,255,.08)}
+.bar i{width:11px;height:11px;border-radius:50%;background:#FF5F57}.bar i:nth-child(2){background:#FEBC2E}.bar i:nth-child(3){background:#28C840}
+.bar .url{margin-left:.75rem;flex:1;font-size:.78rem;color:var(--muted);background:rgba(255,255,255,.06);border-radius:8px;padding:.25rem .7rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shot{position:relative;aspect-ratio:16/10;overflow:hidden}
+.shot:has(img){aspect-ratio:auto}
+.shot img{position:relative;z-index:1;display:block;width:100%;height:auto}
+
+/* CSS mockups (shown if a screenshot is missing) */
+.mock{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1.1fr;gap:6%;padding:7% 6%;align-items:center}
+.mock h5{font-family:var(--display);font-size:clamp(1rem,2.4vw,1.6rem);line-height:1.05;margin:0 0 .6rem}
+.mock .l{height:6px;border-radius:3px;margin:.35rem 0;opacity:.35}
+.mock .pill{display:inline-block;height:14px;width:42%;border-radius:4px;margin-top:.7rem}
+.m-cpa{background:#0F1A2E;color:#fff}.m-cpa .l{background:#9FB0CC}.m-cpa .pill{background:#3B5BFD}
+.m-cpa .panel{background:#1E2A5A;border-radius:10px;padding:8%;height:88%;display:flex;flex-direction:column;gap:7%}
+.m-cpa .bub{border-radius:8px;height:18%;background:#2E3C6E}.m-cpa .bub.y{background:#1F6F6A;align-self:flex-end;width:80%}.m-cpa .bub.h{background:linear-gradient(90deg,#2E3C6E 40%,#F5C36B 40%,#F5C36B 70%,#2E3C6E 70%)}
+.m-lg{background:#F2EFE6;color:#1E2430}.m-lg h5{font-family:Georgia,serif;font-weight:400}.m-lg .l{background:#1E2430}.m-lg .pill{background:#2F6B4F}
+.m-lg .paper{background:#fff;border-radius:6px;padding:8%;height:88%;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.m-lg .paper .l{opacity:.18}.m-lg .r{background:#F4B3AA!important;opacity:1!important}.m-lg .o{background:#F6D29A!important;opacity:1!important}.m-lg .yy{background:#F1E38A!important;opacity:1!important}
+
+.info .live{display:inline-flex;align-items:center;gap:.5rem;font-size:.85rem;font-weight:600;color:#BBF7D0;margin-bottom:1rem}
+.info h3{font-size:clamp(2rem,4vw,2.8rem);font-weight:800;margin-bottom:.6rem}
+.info .tag{font-size:1.15rem;color:var(--ink);font-weight:500;margin-bottom:1rem}
+.info p.desc{color:var(--muted)}
+.feats{display:grid;gap:.7rem;margin:1.5rem 0}
+.feats li{display:flex;gap:.75rem;align-items:flex-start;color:#D4D8EC}
+.feats svg{flex:none;width:20px;height:20px;margin-top:.2rem;color:var(--cyan)}
+.tech{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.75rem}
+.tech span{font-size:.82rem;font-weight:500;padding:.3rem .75rem;border-radius:999px;background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.3);color:#DDD6FE}
+
+/* Experience */
+.timeline{position:relative;max-width:52rem;margin:0 auto}
+.timeline::before{content:"";position:absolute;left:19px;top:.5rem;bottom:.5rem;width:2px;background:linear-gradient(var(--violet),var(--cyan),var(--pink))}
+.job{position:relative;padding-left:3.75rem}
+.job+.job{margin-top:1.5rem}
+.job::before{content:"";position:absolute;left:11px;top:1.9rem;width:18px;height:18px;border-radius:50%;background:var(--bg);border:3px solid var(--cyan);box-shadow:0 0 18px rgba(34,211,238,.6)}
+.job .glass{padding:1.6rem 1.75rem;transition:border-color .3s,transform .3s}
+.job .glass:hover{border-color:rgba(34,211,238,.35);transform:translateX(4px)}
+.job-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-bottom:.35rem}
+.job h3{font-size:1.3rem;font-weight:700}
+.when{font-size:.85rem;font-weight:600;color:var(--cyan);background:rgba(34,211,238,.08);border-radius:999px;padding:.2rem .8rem;align-self:flex-start}
+.org{color:#C4B5FD;font-weight:500;margin-bottom:.8rem}
+.job .context{color:var(--muted);margin-bottom:.8rem}
+.job ul li{color:#C9CDE2;position:relative;padding-left:1.1rem;margin-bottom:.4rem}
+.job ul li::before{content:"";position:absolute;left:0;top:.7em;width:6px;height:6px;border-radius:50%;background:var(--violet)}
+
+/* Skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+.skill{padding:1.75rem;transition:transform .3s,border-color .3s}
+.skill:hover{transform:translateY(-5px);border-color:rgba(139,92,246,.4)}
+.skill .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;margin-bottom:1.1rem;background:linear-gradient(135deg,rgba(139,92,246,.25),rgba(34,211,238,.2));border:1px solid var(--line)}
+.skill .ic svg{width:22px;height:22px;color:#E0E7FF}
+.skill h3{font-size:1.15rem;margin-bottom:1rem}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem}
+.chips span{font-size:.86rem;padding:.3rem .75rem;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid var(--line);color:#D4D8EC}
+
+/* Education */
+.edu{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+@media(max-width:760px){.edu{grid-template-columns:1fr}}
+.edu .glass{padding:1.75rem}
+.edu h3{font-size:1.2rem;margin-bottom:1.1rem}
+.row{padding:.85rem 0;border-top:1px solid var(--line)}
+.row:first-of-type{border-top:0;padding-top:0}
+.row b{display:block;font-weight:600}
+.row span{color:var(--muted);font-size:.93rem}
+
+/* Contact */
+.contact{position:relative;text-align:center;padding:clamp(3rem,7vw,5rem) clamp(1.5rem,5vw,4rem);border-radius:28px;overflow:hidden;
+  background:linear-gradient(var(--bg),var(--bg)) padding-box,var(--grad) border-box;border:1.5px solid transparent}
+.contact::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 0%,rgba(139,92,246,.3),transparent 50%),radial-gradient(circle at 80% 100%,rgba(34,211,238,.25),transparent 50%);z-index:0}
+.contact>*{position:relative}
+.contact h2{font-size:clamp(2.2rem,6vw,4rem);font-weight:800;margin-bottom:1rem}
+.contact p{color:var(--muted);max-width:36rem;margin:0 auto 2rem}
+.contact .actions{justify-content:center}
+.mail{display:inline-block;font-family:var(--display);font-weight:700;font-size:clamp(1.1rem,3.5vw,1.7rem);margin-bottom:2rem;border-bottom:2px solid rgba(255,255,255,.2);word-break:break-all}
+.mail:hover{border-color:var(--cyan)}
+footer{text-align:center;color:var(--muted);font-size:.9rem;padding:3rem 0}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+.toast{position:fixed;left:50%;bottom:1.5rem;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--ink);color:#0A0A1A;padding:.6rem 1.2rem;border-radius:999px;font-weight:600;transition:.3s;z-index:60}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<div class="gridbg" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Main">
+  <a class="logo" href="#home">RD</a>
+  <a class="hide-sm" href="#about">About</a>
+  <a class="hide-sm" href="#projects">Projects</a>
+  <a class="hide-sm" href="#experience">Experience</a>
+  <a class="hide-sm" href="#skills">Skills</a>
+  <a class="cta" href="#contact">Contact</a>
+</nav>
+
+<main>
+  <!-- HERO -->
+  <header class="hero wrap" id="home">
+    <div>
+      <div class="badge reveal"><span class="dot"></span>Open to internships, full-time roles and new opportunities</div>
+      <h1 class="reveal" style="--d:.1s"><span class="hi">Hi, I'm</span><span class="grad-text">Rudraksh Dhasmana</span></h1>
+      <p class="roles reveal" style="--d:.2s">I build <span class="typed" id="typed">AI products</span><span class="caret" aria-hidden="true"></span></p>
+      <p class="lede reveal" style="--d:.3s">Third-year BCA student at Christ University, Delhi NCR. I design, build and deploy software end to end, and two of my products are live right now.</p>
+      <div class="actions reveal" style="--d:.4s">
+        <a class="btn btn-primary" href="#projects">View my work
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+        <a class="btn btn-ghost" href="resume.pdf" download>Download resume
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a>
+      </div>
+      <div class="socials reveal" style="--d:.5s">
+        <a href="https://github.com/Rudraksh2310" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg></a>
+        <a href="mailto:dhasmanarudraksh@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></a>
+      </div>
+      <div class="stats reveal" style="--d:.6s">
+        <div class="stat glass"><b class="grad-text">2</b><span>Products live</span></div>
+        <div class="stat glass"><b class="grad-text">3</b><span>Internships</span></div>
+        <div class="stat glass"><b class="grad-text">20+</b><span>Technologies</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- TECH STRIP -->
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <span>Python</span><span>FastAPI</span><span>React</span><span>PostgreSQL</span><span>LLMs</span><span>RAG</span><span>Whisper</span><span>Vercel</span><span>Angular</span><span>Express</span><span>JavaScript</span><span>Neon</span>
+      <span>Python</span><span>FastAPI</span><span>React</span><span>PostgreSQL</span><span>LLMs</span><span>RAG</span><span>Whisper</span><span>Vercel</span><span>Angular</span><span>Express</span><span>JavaScript</span><span>Neon</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="sec wrap" id="about">
+    <div class="sec-title reveal">
+      <span class="kicker">About me</span>
+      <h2>A student who likes to ship</h2>
+    </div>
+    <div class="about">
+      <div class="about-text glass reveal">
+        <p>I'm Rudraksh, a <strong>third-year Bachelor of Computer Applications student at Christ (Deemed to be University), Delhi NCR</strong>, graduating in 2027. I grew up in Noida and came into tech from a commerce background in school, which is part of why I care so much about building things that solve everyday problems for regular people.</p>
+        <p>Alongside my degree, I've spent my breaks learning on real teams: <strong>an AI internship with Intel Unnati</strong> that grew out of an AI certification course offered by my college, <strong>full-stack development at Myapaar</strong>, where I learned how APIs connect a database to the frontend, and most recently <strong>real-time fraud detection at Pinaak Innovative Labs</strong>. Each one taught me something my classes couldn't, from how a frontend, an API and a database fit together to agreeing on clean API contracts with a team.</p>
+        <p>Outside of internships, I build my own products end to end. <strong>CareerPrepAI</strong> came from wanting a better way for students like me to practise interviews, and <strong>LexiGuard AI</strong> from seeing how easily people sign rent agreements and offer letters without understanding them. I designed, built, debugged and deployed both myself, and they're live today.</p>
+        <p>When I'm not coding, I'm on the field. I play for my university's football team, which has taught me as much about discipline and teamwork as any project has.</p>
+      </div>
+      <div class="facts glass reveal" style="--d:.1s">
+        <h3>Quick facts</h3>
+        <div class="fact"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
+          <div><b>Studying</b><span>BCA, Christ University, Delhi NCR</span></div></div>
+        <div class="fact"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+          <div><b>Graduating</b><span>May 2027</span></div></div>
+        <div class="fact"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+          <div><b>Based in</b><span>Noida, India</span></div></div>
+        <div class="fact"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2a4 4 0 0 1 4 4v1a3 3 0 0 1 3 3v1a3 3 0 0 1-1 5.8V18a4 4 0 0 1-8 0v-.2A3 3 0 0 1 6 12v-1a3 3 0 0 1 3-3V6a4 4 0 0 1 3-4z"/></svg></div>
+          <div><b>Interests</b><span>Software, AI, product building and solving real-world problems</span></div></div>
+        <div class="fact"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a15 15 0 0 0 0 18M12 3a15 15 0 0 1 0 18M3 12h18"/></svg></div>
+          <div><b>Outside code</b><span>University football team</span></div></div>
+        <div class="fact"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div><b>Open to</b><span>Internships, full-time roles and any opportunity to learn and contribute</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="sec wrap" id="projects">
+    <div class="sec-title reveal">
+      <span class="kicker">Projects</span>
+      <h2>Things I've built and shipped</h2>
+      <p>Built end to end, from the interface to the database to the deployment. Click through, they're live.</p>
+    </div>
+
+    <article class="project">
+      <div class="media reveal" style="--glowc:#3B5BFD">
+        <a class="browser" href="https://careerprepai-nine.vercel.app" aria-label="Open CareerPrepAI live">
+          <div class="bar"><i></i><i></i><i></i><span class="url">careerprepai-nine.vercel.app</span></div>
+          <div class="shot">
+            <div class="mock m-cpa"><div><h5>Mock interviews that talk back.</h5><div class="l"></div><div class="l" style="width:80%"></div><div class="l" style="width:60%"></div><span class="pill"></span></div>
+              <div class="panel"><div class="bub" style="width:85%"></div><div class="bub y"></div><div class="bub h"></div></div></div>
+            <img src="careerprepai.png" alt="CareerPrepAI homepage: Mock interviews that talk back" onerror="this.remove()">
+          </div>
+        </a>
+      </div>
+      <div class="info reveal" style="--d:.15s">
+        <span class="live"><span class="dot"></span>Live</span>
+        <h3 class="grad-text">CareerPrepAI</h3>
+        <p class="tag">An AI interviewer that listens to what you actually said.</p>
+        <p class="desc">A mock interview that feels like a video call. An animated AI interviewer asks questions out loud, listens to your spoken answers, asks real follow-ups and gives you a scored report.</p>
+        <ul class="feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Five AI interviewers with their own voices and lip-synced avatars</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Technical and resume rounds, with follow-ups grounded in company FAQs (RAG)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Scored report per round: strengths, weak spots and a question-by-question breakdown</li>
+        </ul>
+        <div class="tech"><span>React</span><span>FastAPI</span><span>PostgreSQL</span><span>Groq</span><span>Whisper</span><span>RAG</span><span>Vercel</span></div>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://careerprepai-nine.vercel.app">Try it live
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="btn btn-ghost" href="https://github.com/Rudraksh2310/CareerPrepAI">Source code</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project flip">
+      <div class="media reveal" style="--glowc:#DB2777">
+        <a class="browser" href="https://lexiguard-21ha.vercel.app" aria-label="Open LexiGuard AI live">
+          <div class="bar"><i></i><i></i><i></i><span class="url">lexiguard-21ha.vercel.app</span></div>
+          <div class="shot">
+            <div class="mock m-lg"><div><h5>Know what you're signing.</h5><div class="l"></div><div class="l" style="width:80%"></div><div class="l" style="width:65%"></div><span class="pill"></span></div>
+              <div class="paper"><div class="l"></div><div class="l r"></div><div class="l"></div><div class="l o" style="width:85%"></div><div class="l"></div><div class="l yy" style="width:70%"></div><div class="l"></div></div></div>
+            <img src="lexiguard.png" alt="LexiGuard AI homepage: Know what you're signing" onerror="this.remove()">
+          </div>
+        </a>
+      </div>
+      <div class="info reveal" style="--d:.15s">
+        <span class="live"><span class="dot"></span>Live</span>
+        <h3 class="grad-text">LexiGuard AI</h3>
+        <p class="tag">Finds the traps in a contract before you sign it.</p>
+        <p class="desc">Upload a contract, offer letter, rent agreement or NDA. LexiGuard flags the risky clauses by severity and explains each one in plain English or Hindi.</p>
+        <ul class="feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Red, orange and yellow risk flags, each traced to a real sentence in the document</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>Chat with your document by typing or speaking, with read-aloud in English and Hindi</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>AI drafting of new documents, plus downloadable PDF and Word reports</li>
+        </ul>
+        <div class="tech"><span>FastAPI</span><span>PostgreSQL</span><span>Llama 3.3</span><span>BM25</span><span>Whisper</span><span>JavaScript</span><span>Vercel</span></div>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://lexiguard-21ha.vercel.app">Try it live
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="btn btn-ghost" href="https://github.com/Rudraksh2310/Lexiguard">Source code</a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="sec wrap" id="experience">
+    <div class="sec-title reveal">
+      <span class="kicker">Experience</span>
+      <h2>Where I've worked</h2>
+    </div>
+    <div class="timeline">
+      <div class="job reveal"><div class="glass">
+        <div class="job-top"><h3>Software Engineering Intern</h3><span class="when">May – Jun 2026</span></div>
+        <p class="org">Pinaak Innovative Labs · Ghaziabad</p>
+        <ul><li>Part of a four-engineer team building real-time detection of first-party e-commerce fraud</li>
+            <li>Built real-time behavioral signal capture and scoring</li>
+            <li>Worked on schema design, API contracts and cross-module integration</li></ul>
+      </div></div>
+      <div class="job reveal"><div class="glass">
+        <div class="job-top"><h3>Full-Stack Engineering Intern</h3><span class="when">May – Jun 2025</span></div>
+        <p class="org">Myapaar (All Indus Roots LLP) · Remote</p>
+        <p class="context">My first experience inside a working product team, and where full-stack development really clicked for me.</p>
+        <ul><li>Gained a solid, practical understanding of how APIs work: how requests and responses are structured, and how the frontend and backend communicate through them</li>
+            <li>Learned how to connect a database to the frontend through an API layer, so data moves cleanly from storage to the screen and back</li>
+            <li>Built the full-stack foundation I later used to design and ship CareerPrepAI and LexiGuard AI on my own</li></ul>
+      </div></div>
+      <div class="job reveal"><div class="glass">
+        <div class="job-top"><h3>Artificial Intelligence Intern</h3><span class="when">Dec 2024 – Feb 2025</span></div>
+        <p class="org">Intel Unnati · Through Christ University</p>
+        <p class="context">An internship that extended the additional AI certification course offered by my college, taking what we learned in class into hands-on model work.</p>
+        <ul><li>Built and fine-tuned an LLM for text and image generation</li>
+            <li>Curated datasets, engineered prompts and evaluated model outputs</li>
+            <li>Integrated the model into the team's development pipeline</li></ul>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="sec wrap" id="skills">
+    <div class="sec-title reveal">
+      <span class="kicker">Skills</span>
+      <h2>My toolkit</h2>
+    </div>
+    <div class="skills">
+      <div class="skill glass reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2a4 4 0 0 1 4 4v1a3 3 0 0 1 3 3v1a3 3 0 0 1-1 5.8V18a4 4 0 0 1-8 0v-.2A3 3 0 0 1 6 12v-1a3 3 0 0 1 3-3V6a4 4 0 0 1 3-4z"/></svg></div>
+        <h3>AI & LLMs</h3><div class="chips"><span>LLMs</span><span>RAG</span><span>Prompt engineering</span><span>Fine-tuning</span><span>Whisper</span><span>Text-to-speech</span><span>scikit-learn</span><span>TensorFlow</span></div></div>
+      <div class="skill glass reveal" style="--d:.1s"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01"/></svg></div>
+        <h3>Backend</h3><div class="chips"><span>Python</span><span>FastAPI</span><span>Express</span><span>REST APIs</span><span>Auth</span><span>pytest</span></div></div>
+      <div class="skill glass reveal" style="--d:.2s"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3>Frontend</h3><div class="chips"><span>React</span><span>Angular</span><span>JavaScript</span><span>HTML</span><span>CSS</span></div></div>
+      <div class="skill glass reveal" style="--d:.3s"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+        <h3>Data & Deploy</h3><div class="chips"><span>PostgreSQL</span><span>SQLAlchemy</span><span>MongoDB</span><span>Neon</span><span>Vercel</span><span>Git & GitHub</span></div></div>
+      <div class="skill glass reveal" style="--d:.4s"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+        <h3>Languages</h3><div class="chips"><span>Python</span><span>JavaScript</span><span>Java</span><span>C</span><span>C++</span></div></div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="sec wrap" id="education">
+    <div class="sec-title reveal">
+      <span class="kicker">Education</span>
+      <h2>Learning & certifications</h2>
+    </div>
+    <div class="edu">
+      <div class="glass reveal"><h3>Education</h3>
+        <div class="row"><b>Bachelor of Computer Applications</b><span>Christ (Deemed to be University), Delhi NCR · 2024 – 2027</span></div>
+        <div class="row"><b>Class XII, Commerce (CBSE)</b><span>Vishwa Bharati Public School, Noida · 2024</span></div>
+        <div class="row"><b>Class X (CBSE)</b><span>Vishwa Bharati Public School, Noida · 2022</span></div>
+      </div>
+      <div class="glass reveal" style="--d:.1s"><h3>Certifications</h3>
+        <div class="row"><b>AWS Certification</b><span>Amazon Web Services</span></div>
+        <div class="row"><b>Full Stack Web Development</b><span>Acmegrade</span></div>
+        <div class="row"><b>C Language Course</b><span>Infosys</span></div>
+        <div class="row"><b>Cyber Security Workshops</b><span>Multiple</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="sec wrap" id="contact">
+    <div class="contact reveal">
+      <span class="kicker">Contact</span>
+      <h2>Let's work <span class="grad-text">together</span></h2>
+      <p>I'm open to internships, full-time roles and any opportunity where I can learn, contribute and grow. If you think I could be a good fit, I'd love to hear from you.</p>
+      <a class="mail" href="mailto:dhasmanarudraksh@gmail.com">dhasmanarudraksh@gmail.com</a>
+      <div class="actions">
+        <button class="btn btn-primary" id="copy">Copy email</button>
+        <a class="btn btn-ghost" href="resume.pdf" download>Download resume</a>
+        <a class="btn btn-ghost" href="https://github.com/Rudraksh2310">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Designed and built by Rudraksh Dhasmana · © 2026</footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Scroll reveal
+  var els = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('in'); }); }
+  else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: .15 });
+    els.forEach(function(e){ io.observe(e); });
+  }
+
+  // Typing roles
+  var t = document.getElementById('typed');
+  var roles = ['AI products', 'full-stack apps', 'real-world software', 'things people use'];
+  if (!reduce) {
+    var r = 0, i = roles[0].length, del = true;
+    setTimeout(function tick(){
+      var w = roles[r];
+      if (del) { i--; t.textContent = w.slice(0, i); if (i === 0) { del = false; r = (r + 1) % roles.length; } return setTimeout(tick, 40); }
+      w = roles[r]; i++; t.textContent = w.slice(0, i);
+      if (i === w.length) { del = true; return setTimeout(tick, 2000); }
+      setTimeout(tick, 70);
+    }, 2200);
+  }
+
+  // Cursor glow
+  var c = document.getElementById('cursor');
+  if (!reduce && matchMedia('(pointer: fine)').matches) {
+    addEventListener('pointermove', function(e){ c.style.opacity = 1; c.style.left = e.clientX + 'px'; c.style.top = e.clientY + 'px'; });
+  }
+
+  // Copy email
+  var toast = document.getElementById('toast'), tt;
+  document.getElementById('copy').addEventListener('click', function(){
+    navigator.clipboard.writeText('dhasmanarudraksh@gmail.com').then(function(){
+      toast.textContent = 'Email copied!'; toast.classList.add('show');
+      clearTimeout(tt); tt = setTimeout(function(){ toast.classList.remove('show'); }, 2000);
+    });
+  });
+})();
+</script>
+</body>
+</html>
